@@ -1,6 +1,6 @@
 
-#ifndef Person_h
-#define Person_h
+#ifndef Pedestrian_h
+#define Pedestrian_h
 
 #include "GameObject.h"
 
@@ -24,4 +24,4 @@ public:
 };
 
 
-#endif /* Person_h */
+#endif /* Pedestrian_h */

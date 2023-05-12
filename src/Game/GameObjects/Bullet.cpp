@@ -3,7 +3,7 @@
 #include "Game.h"
 
 Bullet::Bullet(Game *game, ofNode otherTransform)
-    :GameObject(game, otherTransform.getGlobalPosition(), glm::vec3(10))
+    :GameObject(game, otherTransform.getGlobalPosition(), glm::vec3(20))
 {
         transform.setGlobalOrientation(otherTransform.getGlobalOrientation());
     material.setEmissiveColor(ofColor::red);

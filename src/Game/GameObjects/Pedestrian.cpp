@@ -1,5 +1,4 @@
 
-
 #include "Pedestrian.h"
 #include "Player.h"
 #include "Game.h"
@@ -41,13 +40,14 @@ void Pedestrian::draw(){
 void Pedestrian::receiveCarCollision(Player *car) {
     kill();
     game->doScream();
+	game->getPlayer()->addCoins(100);
 };
 
 void Pedestrian::receiveBulletCollision(GameObject *bullet) {
     
     bullet->kill();
     kill();
-    game->getPlayer()->addCoins(1000);
+    game->getPlayer()->addCoins(1);
  
 };
 
