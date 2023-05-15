@@ -26,6 +26,18 @@ void Player::init(){
 void Player::update(){
     prevPos = transform.getPosition();
     transform.move(transform.getZAxis() * speed);
+
+	auto currentTime = ofGetElapsedTimef();
+	if (currentTime < timeSliding && currentTime > timeSlideSide) {
+		if ((rand() % 100) < 50) {
+			transform.rotateDeg(1, 0, 2, 0);
+		}
+		else {
+			transform.rotateDeg(-1, 0, 2, 0);
+		}
+		timeSlideSide += 0.5;
+		
+	}
     
     if(speed > MAX_SPEED) speed = MAX_SPEED;
     if(speed < 0) speed = 0;
@@ -96,4 +108,16 @@ int Player::getCoins(){
 }
 void Player::shoot(){
     game->addGameObject(new Bullet(game, transform));
+}
+
+void Player::slow() {
+	if (speed > 3) {
+		speed *= 0.9;
+	}
+	
+}
+
+void Player::overOil() {
+	timeSliding = ofGetElapsedTimef() + 10;
+	timeSlideSide = ofGetElapsedTimef();
 }

@@ -15,6 +15,8 @@ public:
 
 	ofxAssimpModelLoader model;
 	int speed;
+	int CONSTANT_SPEED = 8;
+
 
 };
 

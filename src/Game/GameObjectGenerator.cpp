@@ -8,6 +8,8 @@
 #include "Pedestrian.h"
 #include "Barrier.h"
 #include "Hole.h"
+#include "Dirt.h"
+#include "Oil.h"
 
 GameObjectGenerator::GameObjectGenerator(Game *game): game(game){}
 
@@ -99,4 +101,14 @@ void GameObjectGenerator::generateWorld(){
 		glm::vec3(0, -25, 1500), glm::vec3(200, 2, 200));
 
 	game->addGameObject(hole);
+
+	auto dirt = new Dirt(game,
+		glm::vec3(0, -25, 200), glm::vec3(200, 2, 200));
+
+	game->addGameObject(dirt);
+
+	auto oil = new Oil(game,
+		glm::vec3(50, -25, 700), glm::vec3(200, 2, 200));
+
+	game->addGameObject(oil);
 }

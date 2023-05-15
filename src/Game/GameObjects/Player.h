@@ -27,7 +27,10 @@ public:
     void drawDebug() override;
     void checkCollisions() override;
     float getSpeed();
-    
+
+	float timeSliding;
+	float timeSlideSide;
+
     void steerLeft();
     void steerRight();
     void accelerate();
@@ -37,6 +40,10 @@ public:
     void stop();
     void addCoins(int n = 1);
     int getCoins();
+
+	void slow();
+	void overOil();
+	
 };
 
 #endif 
