@@ -8,6 +8,9 @@ Barrier::Barrier(Game *game, glm::vec3 pos, glm::vec3 dim) :
 	material.setDiffuseColor(ofColor::blueSteel);
 
 	speed = CONSTANT_SPEED;
+	timeToMove = 0;
+	maxHeight = dim.y + 100;
+	minHeight = dim.y / 2 - 50;
 
 }
 Barrier::~Barrier() {
@@ -15,15 +18,20 @@ Barrier::~Barrier() {
 
 
 void Barrier::update() {
-	model.update();
 	int posY = transform.getGlobalPosition().y;
-	if ( posY > 1000) {
-		speed = -CONSTANT_SPEED;
+	if (ofGetElapsedTimef() > timeToMove) {
+		if (posY > maxHeight) {
+			timeToMove = ofGetElapsedTimef() + 2;
+			speed = -CONSTANT_SPEED;
+		}
+		else if (posY < minHeight) {
+			timeToMove = ofGetElapsedTimef() + 2;
+			speed = CONSTANT_SPEED;
+		}
+		transform.move(transform.getYAxis() * speed);
 	}
-	else if (posY <= 0) {
-		speed = CONSTANT_SPEED;
-	}
-	transform.move(transform.getYAxis() * speed);
+	
+	
 }
 
 void Barrier::draw() {

@@ -30,6 +30,7 @@ public:
 
 	float timeSliding;
 	float timeSlideSide;
+    int slideDirection;
 
     void steerLeft();
     void steerRight();

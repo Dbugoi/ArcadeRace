@@ -28,15 +28,20 @@ void Player::update(){
     transform.move(transform.getZAxis() * speed);
 
 	auto currentTime = ofGetElapsedTimef();
-	if (currentTime < timeSliding && currentTime > timeSlideSide) {
-		if ((rand() % 100) < 50) {
-			transform.rotateDeg(1, 0, 2, 0);
-		}
-		else {
-			transform.rotateDeg(-1, 0, 2, 0);
-		}
-		timeSlideSide += 0.5;
-		
+	if (currentTime < timeSliding) {
+        if(currentTime >= timeSlideSide){
+		    if ((rand() % 100) < 50) {
+                slideDirection = 1;
+			    transform.rotateDeg(slideDirection, 0, 2, 0);
+		    }
+		    else {
+                slideDirection = -1;
+			    transform.rotateDeg(slideDirection, 0, 2, 0);
+		    }
+		    timeSlideSide += 0.25;
+        }
+        else
+            transform.rotateDeg(slideDirection, 0, 2, 0);
 	}
     
     if(speed > MAX_SPEED) speed = MAX_SPEED;
@@ -107,7 +112,11 @@ int Player::getCoins(){
     return coins;
 }
 void Player::shoot(){
-    game->addGameObject(new Bullet(game, transform));
+    if (coins > 0) {
+        game->addGameObject(new Bullet(game, transform));
+        coins--;
+    }
+    
 }
 
 void Player::slow() {
@@ -118,6 +127,9 @@ void Player::slow() {
 }
 
 void Player::overOil() {
-	timeSliding = ofGetElapsedTimef() + 10;
-	timeSlideSide = ofGetElapsedTimef();
+    float currentTimef = ofGetElapsedTimef();
+    if (timeSliding < currentTimef) {
+        timeSliding = currentTimef + 3;
+        timeSlideSide = currentTimef;
+    }
 }

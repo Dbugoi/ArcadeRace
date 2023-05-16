@@ -15,10 +15,6 @@ Coin::~Coin(){
 }
 
 
-void Coin::update(){
-    model.update();
-}
-
 void Coin::draw(){
    
     

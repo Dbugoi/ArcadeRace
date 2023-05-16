@@ -10,6 +10,7 @@
 #include "Hole.h"
 #include "Dirt.h"
 #include "Oil.h"
+#include "CrazyArch.h"
 
 GameObjectGenerator::GameObjectGenerator(Game *game): game(game){}
 
@@ -93,22 +94,29 @@ void GameObjectGenerator::generateWorld(){
     game->addGameObject(pedestrian);
 
 	auto barrier = new Barrier(game,
-		glm::vec3(0, -25,2000), glm::vec3(W, W/4, 100));
+		glm::vec3(0, 600,2000), glm::vec3(W - wallSize , 500, 100));
 
 	game->addGameObject(barrier);
 
 	auto hole = new Hole(game,
-		glm::vec3(0, -25, 1500), glm::vec3(200, 2, 200));
+		glm::vec3(0, -50, 1500), glm::vec3(200, 0.1, 200));
 
 	game->addGameObject(hole);
 
 	auto dirt = new Dirt(game,
-		glm::vec3(0, -25, 200), glm::vec3(200, 2, 200));
+		glm::vec3(0, -50, 200), glm::vec3(200, 0.1, 200));
 
 	game->addGameObject(dirt);
 
 	auto oil = new Oil(game,
-		glm::vec3(50, -25, 700), glm::vec3(200, 2, 200));
+		glm::vec3(50, -50, 700), glm::vec3(200, 0.1, 200));
 
 	game->addGameObject(oil);
+
+    auto crazyArch = new CrazyArch(game,
+        glm::vec3(0, roadPos.y, 500),
+        glm::vec3(W, 100, 100));
+    crazyArch->isFixed = true;
+    game->addGameObject(crazyArch);
+
 }
