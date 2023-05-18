@@ -9,11 +9,21 @@ Crane::Crane(Game* game, glm::vec3 pos, glm::vec3 dim) : GameObject(game, pos, d
 	craneHeight = dim.y;
 	cranePosY = pos.y;
 	W = game->ROAD_WIDTH;
+	CONSTANT_SPEED = 3;
+	speed = -CONSTANT_SPEED;
 }
 Crane::~Crane() {}
 
 void Crane::update() {
-	
+	auto py=collider->getGlobalPosition();
+	if (py.y > cranePosY) {
+		speed = -CONSTANT_SPEED; 
+	}
+	else if (py.y < craneHeight/2 -50 ) {
+		speed = CONSTANT_SPEED;
+	}
+	py.y += speed;
+	collider->setGlobalPosition(py) ;
 }
 
 void Crane::draw() {
