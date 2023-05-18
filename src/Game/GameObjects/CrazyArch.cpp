@@ -10,7 +10,7 @@ CrazyArch::CrazyArch(Game* game, glm::vec3 pos, glm::vec3 dim) : GameObject(game
     timeChangeNum = 0;
     numCoins = rand() % 100;
     plane.set(200, 200);
-    plane.move(pos.x, archHeight - 50, pos.z - 26); 
+    plane.move(pos.x, archHeight - 50, pos.z - 29); 
     plane.rotateDeg(180, 0, 1, 0);
 
     ofEnableNormalizedTexCoords();

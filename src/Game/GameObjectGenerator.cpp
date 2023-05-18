@@ -11,6 +11,7 @@
 #include "Dirt.h"
 #include "Oil.h"
 #include "CrazyArch.h"
+#include "Crane.h"
 
 GameObjectGenerator::GameObjectGenerator(Game *game): game(game){}
 
@@ -99,7 +100,7 @@ void GameObjectGenerator::generateWorld(){
 	game->addGameObject(barrier);
 
 	auto hole = new Hole(game,
-		glm::vec3(0, -50, 1500), glm::vec3(200, 0.1, 200));
+		glm::vec3(0, -48, 1500), glm::vec3(200, 0.1, 200));
 
 	game->addGameObject(hole);
 
@@ -119,4 +120,8 @@ void GameObjectGenerator::generateWorld(){
     crazyArch->isFixed = true;
     game->addGameObject(crazyArch);
 
+	auto crane = new Crane(game,
+		glm::vec3(0, 300, 250),glm::vec3(50, 200, 50));
+
+	game->addGameObject(crane);
 }

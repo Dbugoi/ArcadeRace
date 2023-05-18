@@ -9,7 +9,7 @@ Dirt::Dirt(Game *game, glm::vec3 pos, glm::vec3 dim) :
 	plane.set(dim.x, dim.z);
 	plane.rotateDeg(-90, 1, 0, 0);
 	plane.rotateDeg(180, 0, 1, 0);
-	plane.move(pos.x, pos.y + 0.1, pos.z);
+	plane.move(pos.x, pos.y + 1, pos.z);
 
 	
 
