@@ -133,3 +133,7 @@ void Player::overOil() {
         timeSlideSide = currentTimef;
     }
 }
+
+void Player::removeAllCoins() {
+	coins = 0;
+}

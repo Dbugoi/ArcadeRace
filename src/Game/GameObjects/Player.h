@@ -41,6 +41,7 @@ public:
     void stop();
     void addCoins(int n = 1);
     int getCoins();
+    void removeAllCoins();
 
 	void slow();
 	void overOil();
