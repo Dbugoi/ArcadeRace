@@ -11,6 +11,7 @@ Player::Player(Game *game):GameObject(game, glm::vec3(100)){
     faro.setSpotlight();
     faro.move(0, 0, 50);
     faro.rotateDeg(-200, 1, 0, 0);
+    timeSliding = 0;
 }
 
 Player::~Player(){}
@@ -137,3 +138,13 @@ void Player::overOil() {
 void Player::removeAllCoins() {
 	coins = 0;
 }
+
+void Player::turbo(float s) {
+    speed *= 1.1;
+      
+}
+
+void Player::teletransport() {
+    transform.setPosition(0, 0, 0);
+}
+

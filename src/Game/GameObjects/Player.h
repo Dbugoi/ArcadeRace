@@ -31,6 +31,7 @@ public:
 	float timeSliding;
 	float timeSlideSide;
     int slideDirection;
+   
 
     void steerLeft();
     void steerRight();
@@ -45,6 +46,8 @@ public:
 
 	void slow();
 	void overOil();
+	void teletransport();
+    void turbo(float speed);
 	
 };
 

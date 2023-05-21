@@ -12,6 +12,7 @@
 #include "Oil.h"
 #include "CrazyArch.h"
 #include "Crane.h"
+#include "Turbo.h"
 
 GameObjectGenerator::GameObjectGenerator(Game *game): game(game){}
 
@@ -124,4 +125,10 @@ void GameObjectGenerator::generateWorld(){
 		glm::vec3(0, 300, 250),glm::vec3(50, 200, 50));
 
 	game->addGameObject(crane);
+
+    auto turbo = new Turbo(game,
+        glm::vec3(0, -48, 2000), glm::vec3(200, 0.1, 200));
+
+    game->addGameObject(turbo);
+
 }
