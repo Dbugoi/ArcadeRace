@@ -1,10 +1,16 @@
 #include "PlayState.h"
 #include "ResultState.h"
+#include "PauseState.h"
 #include "Player.h"
 
 PlayState::PlayState(Game *game): State(game, "Play State"){
     game->init();
 };
+
+PlayState::PlayState(Game* game, int aux) : State(game, "Play State") {
+    game->exitPause();
+}
+
 
 void PlayState::update(){
     game->update();
@@ -46,10 +52,15 @@ void PlayState::next(){
 
 
 void PlayState::keyPressed(int key){
-    if(key == 'l')
+    if(key == 'l' || key == 'L')
         game->getPlayer()->toggleLight();
-    if(key == 'd')
+    if(key == 'd' || key == 'D')
         game->toggleDebug();
     if(key == ' ')
         game->getPlayer()->shoot();
+    if (key == 'p' || key == 'P') {
+        game->enterPause();
+        game->setState(new PauseState(game));
+    }
+        
 }

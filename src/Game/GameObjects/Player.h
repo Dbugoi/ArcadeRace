@@ -46,7 +46,7 @@ public:
 
 	void slow();
 	void overOil();
-	void teletransport();
+	void teleport(glm::vec3 pos);
     void turbo(float speed);
     void initPosition();
     void explosionNear();

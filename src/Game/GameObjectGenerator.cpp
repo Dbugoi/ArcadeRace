@@ -16,6 +16,8 @@
 #include "Plane.h"
 #include "Bomb.h"
 #include "ExplosionArea.h"
+#include "Portal.h"
+#include "LightArch.h"
 
 GameObjectGenerator::GameObjectGenerator(Game *game): game(game){}
 
@@ -23,7 +25,7 @@ void GameObjectGenerator::generateWorld(){
     int W = game->ROAD_WIDTH;
     int L = game->ROAD_LENGTH;
     
-    glm::vec3 roadPos(0, -50.1, L/2 - 1000);
+    glm::vec3 roadPos(0, -50.1, L/2);
     auto road = new Road(game, roadPos, glm::vec3(W, 0, L));
     
     game->addGameObject(road);
@@ -59,25 +61,59 @@ void GameObjectGenerator::generateWorld(){
     
     
     auto wall_r = new Wall(game,
-                    glm::vec3(-W/2, roadPos.y, roadPos.z),
-                           glm::vec3(wallSize, wallSize, L));
+                    glm::vec3(-W/2, roadPos.y, roadPos.z - L/2 + L/8),
+                           glm::vec3(wallSize, wallSize, L/4));
+    game->addGameObject(wall_r);
+
+    /*wall_r = new Wall(game,
+                    glm::vec3(-W/2, roadPos.y, roadPos.z - L/4 * 0.8),
+                           glm::vec3(wallSize, wallSize, L/4));
+    game->addGameObject(wall_r);
+    */
+
+    wall_r = new Wall(game,
+            glm::vec3(-W / 2, roadPos.y, roadPos.z - L / 8),
+                glm::vec3(wallSize, wallSize, L / 4));
     game->addGameObject(wall_r);
 
     wall_r = new Wall(game,
-                    glm::vec3(-W/2, roadPos.y, roadPos.z - L * 0.8),
-                           glm::vec3(wallSize, wallSize, L));
+            glm::vec3(-W / 2, roadPos.y, roadPos.z + L / 8),
+                glm::vec3(wallSize, wallSize, L / 4));
+    game->addGameObject(wall_r);
+
+    wall_r = new Wall(game,
+            glm::vec3(-W / 2, roadPos.y, roadPos.z + L / 2 - L / 8),
+                glm::vec3(wallSize, wallSize, L / 4));
     game->addGameObject(wall_r);
 
     
+    
 
     auto wall_l = new Wall(game,
-                    glm::vec3(W/2, roadPos.y, roadPos.z),
-                           glm::vec3(wallSize, wallSize, L));
+                    glm::vec3(W/2, roadPos.y, roadPos.z - L / 2 + L/8),
+                           glm::vec3(wallSize, wallSize, L/4));
+    game->addGameObject(wall_l);
+
+    /*
+    wall_l = new Wall(game,
+                    glm::vec3(W/2, roadPos.y, roadPos.z - L/4 * 0.8),
+                           glm::vec3(wallSize, wallSize, L/4));
+    game->addGameObject(wall_l);
+    */
+
+    wall_l = new Wall(game,
+            glm::vec3(W / 2, roadPos.y, roadPos.z - L / 8),
+                glm::vec3(wallSize, wallSize, L / 4));
     game->addGameObject(wall_l);
 
     wall_l = new Wall(game,
-                    glm::vec3(W/2, roadPos.y, roadPos.z - L * 0.8),
-                           glm::vec3(wallSize, wallSize, L));
+            glm::vec3(W / 2, roadPos.y, roadPos.z + L / 8),
+                glm::vec3(wallSize, wallSize, L / 4));
+    game->addGameObject(wall_l);
+
+    wall_l = new Wall(game,
+            glm::vec3(W / 2, roadPos.y, roadPos.z + L / 2 - L / 8),
+                glm::vec3(wallSize, wallSize, L / 4));
     game->addGameObject(wall_l);
 //
     auto goal = new Goal(game,
@@ -86,6 +122,8 @@ void GameObjectGenerator::generateWorld(){
     goal->isFixed = true;
     game->addGameObject(goal);
     
+
+
     
     auto coin = new Coin(game,
         glm::vec3(0, -25, 500), glm::vec3(50));
@@ -98,43 +136,168 @@ void GameObjectGenerator::generateWorld(){
 
     game->addGameObject(pedestrian);
 
+    pedestrian = new Pedestrian(game,
+        glm::vec3(W / 2 - 100, -25, 10000), glm::vec3(50, 150, 50));
+
+    game->addGameObject(pedestrian);
+
+    pedestrian = new Pedestrian(game,
+        glm::vec3(W / 2 - 100, -25, 29000), glm::vec3(50, 150, 50));
+
+    game->addGameObject(pedestrian);
+
+
+
+
 	auto barrier = new Barrier(game,
-		glm::vec3(0, 600,4000), glm::vec3(W - wallSize , 500, 100));
+		glm::vec3(0, 600,8000), glm::vec3(W - wallSize , 500, 100));
 
 	game->addGameObject(barrier);
 
+    barrier = new Barrier(game,
+        glm::vec3(0, 600, 16000), glm::vec3(W - wallSize, 500, 100));
+
+    game->addGameObject(barrier);
+
+
+    
 	auto hole = new Hole(game,
-		glm::vec3(0, -48, 1500), glm::vec3(200, 0.1, 200));
+		glm::vec3(0, -48, 6000), glm::vec3(600, 0.1, 600), road);
 
 	game->addGameObject(hole);
 
+    hole = new Hole(game,
+        glm::vec3(200, -48, 16500), glm::vec3(600, 0.1, 600), road);
+
+    game->addGameObject(hole);
+
+    hole = new Hole(game,
+        glm::vec3(-500, -48, 21500), glm::vec3(600, 0.1, 600), road);
+
+    game->addGameObject(hole);
+
+    hole = new Hole(game,
+        glm::vec3(500, -48, 24300), glm::vec3(600, 0.1, 600), road);
+
+    game->addGameObject(hole);
+
+    hole = new Hole(game,
+        glm::vec3(100, -48, 29500), glm::vec3(900, 0.1, 900), road);
+
+    game->addGameObject(hole);
+
+    hole = new Hole(game,
+        glm::vec3(200, -48, 32800), glm::vec3(1200, 0.1, 1200), road);
+
+    game->addGameObject(hole);
+
 	auto dirt = new Dirt(game,
-		glm::vec3(0, -50, 200), glm::vec3(200, 0.1, 200));
+		glm::vec3(0, -50, 2100), glm::vec3(600, 0.1, 600));
 
 	game->addGameObject(dirt);
 
+    dirt = new Dirt(game,
+        glm::vec3(500, -50, 7050), glm::vec3(600, 0.1, 600));
+
+    game->addGameObject(dirt);
+
+    dirt = new Dirt(game,
+        glm::vec3(-300, -50, 9500), glm::vec3(400, 0.1, 400));
+
+    game->addGameObject(dirt);
+
+    dirt = new Dirt(game,
+        glm::vec3(0, -50, 19400), glm::vec3(2000, 0.1, 500));
+
+    game->addGameObject(dirt);
+
+    dirt = new Dirt(game,
+        glm::vec3(100, -50, 23600), glm::vec3(800, 0.1, 800));
+
+    game->addGameObject(dirt);
+
+    dirt = new Dirt(game,
+        glm::vec3(-400, -50, 30200), glm::vec3(600, 0.1, 600));
+
+    game->addGameObject(dirt);
+
+    dirt = new Dirt(game,
+        glm::vec3(100, -50, 36100), glm::vec3(500, 0.1, 300));
+
+    game->addGameObject(dirt);
+
 	auto oil = new Oil(game,
-		glm::vec3(50, -50, 700), glm::vec3(200, 0.1, 200));
+		glm::vec3(50, -50, 700), glm::vec3(600, 0.1, 600));
 
 	game->addGameObject(oil);
 
+    oil = new Oil(game,
+        glm::vec3(-500, -50, 3500), glm::vec3(300, 0.1, 300));
+
+    game->addGameObject(oil);
+
+    oil = new Oil(game,
+        glm::vec3(400, -50, 12300), glm::vec3(700, 0.1, 700));
+
+    game->addGameObject(oil);
+
+    oil = new Oil(game,
+        glm::vec3(-1100, -50, 24520), glm::vec3(400, 0.1, 400));
+
+    game->addGameObject(oil);
+
+    oil = new Oil(game,
+        glm::vec3(100, -50, 33330), glm::vec3(700, 0.1, 700));
+
+    game->addGameObject(oil);
+
+
+
+
     auto crazyArch = new CrazyArch(game,
-        glm::vec3(0, roadPos.y, 500),
+        glm::vec3(0, roadPos.y, 6000),
+        glm::vec3(W, 100, 100));
+    crazyArch->isFixed = true;
+    game->addGameObject(crazyArch);
+
+    crazyArch = new CrazyArch(game,
+        glm::vec3(0, roadPos.y, 11200),
+        glm::vec3(W, 100, 100));
+    crazyArch->isFixed = true;
+    game->addGameObject(crazyArch);
+
+    crazyArch = new CrazyArch(game,
+        glm::vec3(0, roadPos.y, 28000),
         glm::vec3(W, 100, 100));
     crazyArch->isFixed = true;
     game->addGameObject(crazyArch);
 
 	auto crane = new Crane(game,
-		glm::vec3(0, 300, 250),glm::vec3(50, 200, 50));
+		glm::vec3(0, 300, 9000),glm::vec3(50, 200, 50));
 
 	game->addGameObject(crane);
 
+    crane = new Crane(game,
+        glm::vec3(0, 300, 15000), glm::vec3(50, 200, 50));
+
+    game->addGameObject(crane);
+
+    crane = new Crane(game,
+        glm::vec3(0, 300, 22000), glm::vec3(50, 200, 50));
+
+    game->addGameObject(crane);
+
+    crane = new Crane(game,
+        glm::vec3(0, 300, 4000), glm::vec3(50, 200, 50));
+
+    game->addGameObject(crane);
+
     auto turbo = new Turbo(game,
-        glm::vec3(0, -48, 2000), glm::vec3(200, 0.1, 200));
+        glm::vec3(0, -48, 2000), glm::vec3(400, 0.1, 400));
 
     game->addGameObject(turbo);
 
-    int planeY = 600, planeZ = 900;
+    int planeY = 600, planeZ = 20700;
 
     auto plane = new Plane(game,
         glm::vec3(-W / 2 - 1000, planeY, planeZ), glm::vec3(50, 150, 50));
@@ -145,7 +308,36 @@ void GameObjectGenerator::generateWorld(){
     game->addGameObject(bomb);
 
     auto explosionArea = new ExplosionArea(game,
-        glm::vec3(0, -50, planeZ), glm::vec3(1000, 0.1, 1000));
+        glm::vec3(0, -50, planeZ), glm::vec3(1600, 0.1, 1600));
     game->addGameObject(explosionArea);
 
+    planeY = 600, planeZ = 13000;
+
+    plane = new Plane(game,
+        glm::vec3(-W / 2 - 1000, planeY, planeZ), glm::vec3(50, 150, 50));
+    game->addGameObject(plane);
+
+    bomb = new Bomb(game,
+        glm::vec3(0, planeY, planeZ), glm::vec3(150, 50, 50));
+    game->addGameObject(bomb);
+
+    explosionArea = new ExplosionArea(game,
+        glm::vec3(0, -50, planeZ), glm::vec3(1600, 0.1, 1600));
+    game->addGameObject(explosionArea);
+
+    auto portal = new Portal(game,
+        glm::vec3(300, 50, 500), glm::vec3(-200, 0, 2000), glm::vec3(200, 0.1, 200));
+    game->addGameObject(portal);
+
+    auto lightArch = new LightArch(game,
+        glm::vec3(0, roadPos.y, 25000),
+        glm::vec3(W, 100, 100), true, road);
+    crazyArch->isFixed = true;
+    game->addGameObject(lightArch);
+
+    lightArch = new LightArch(game,
+        glm::vec3(0, roadPos.y, 35000),
+        glm::vec3(W, 100, 100), false, road);
+    crazyArch->isFixed = true;
+    game->addGameObject(lightArch);
 }

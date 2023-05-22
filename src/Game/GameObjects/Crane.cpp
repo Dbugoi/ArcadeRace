@@ -4,7 +4,7 @@
 
 
 Crane::Crane(Game* game, glm::vec3 pos, glm::vec3 dim) : GameObject(game, pos, dim) {
-	material.setEmissiveColor(ofColor::yellow);
+	material.setDiffuseColor(ofColor::yellow);
 	hasBeenPassed = false;
 	craneHeight = dim.y;
 	cranePosY = pos.y;
@@ -15,6 +15,7 @@ Crane::Crane(Game* game, glm::vec3 pos, glm::vec3 dim) : GameObject(game, pos, d
 	horizontalY = craneHeight / 2;
 	radius = W / 2 ;
 	angle = 0;
+	originalPosZ = pos.z;
 	//auto position = collider->getGlobalPosition();
 	//position.x -= 250;
 	//position.z -= 250;
@@ -36,7 +37,7 @@ void Crane::update() {
 	horizontalY += verticalSpeed;
 
 	position.x = radius * cos(angle) - radius;
-	position.z = radius * sin(angle) + 250;
+	position.z = radius * sin(angle) + originalPosZ - 25;
 
 	//horizontalX = radius * cos(angle);
 	//horizontalZ = radius * sin(angle);

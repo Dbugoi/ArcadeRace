@@ -4,7 +4,7 @@
 Game::Game(){
     // TODO create settings
     ROAD_WIDTH = 2000;
-    ROAD_LENGTH = 10000;
+    ROAD_LENGTH = 40000;
 
     generator = new GameObjectGenerator(this);
     bDebug = false;
@@ -41,6 +41,7 @@ void Game::init(){
     generator->generateWorld();
     bPlayerFinish = false;
     initTime = ofGetElapsedTimef();
+    pauseTime = 0;
 }
 
 void Game::update(){
@@ -92,7 +93,15 @@ void Game::setFinished(bool v){
 }
 
 float Game::getEllapsedTime(){
-    return ofGetElapsedTimef() - initTime;
+    return ofGetElapsedTimef() - initTime - pauseTime;
+}
+
+void Game::enterPause() {
+    pauseTime = ofGetElapsedTimef();
+}
+
+void Game::exitPause() {
+    pauseTime = ofGetElapsedTimef() - pauseTime;
 }
 
 void Game::doScream(){
@@ -102,3 +111,5 @@ void Game::doScream(){
 void Game::doExplotion() {
     explotion.play();
 }
+
+

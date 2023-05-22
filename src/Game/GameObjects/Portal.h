@@ -1,13 +1,19 @@
 #pragma once
 #include "GameObject.h"
 
-class Hole : public GameObject {
+class Portal : public GameObject {
 
 public:
-	Hole(Game* game, glm::vec3 pos, glm::vec3 dim);
-	~Hole();
+	Portal(Game* game, glm::vec3 pos1, glm::vec3 pos2, glm::vec3 dim);
+	~Portal();
 
 	void draw() override;
 	void receiveCarCollision(Player* car) override;
+
+	glm::vec3 teleportPos;
+
+	ofImage img;
+	ofTexture texture;
+	ofPlanePrimitive plane;
 
 };

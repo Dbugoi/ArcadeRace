@@ -1,25 +1,40 @@
-#include "Hole.h"
+#include "Portal.h"
 #include "Player.h"
 #include "Game.h"
 
 
-Hole::Hole(Game* game, glm::vec3 pos, glm::vec3 dim) :
-	GameObject(game, pos, dim) {
-	material.setDiffuseColor(ofColor::black);
+Portal::Portal(Game* game, glm::vec3 pos1, glm::vec3 pos2, glm::vec3 dim) :
+	GameObject(game, pos1, dim) {
+	
+	teleportPos = pos2;
+
+	plane.set(dim.x, dim.z);
+	plane.rotateDeg(180, 0, 1, 0);
+	plane.move(pos1.x, pos1.y, pos1.z + 1);
+
+	transform.rotateDeg(-90, 1, 0, 0);
+
+	img.load("portal.png");
+
+	texture = img.getTexture();
+	texture.setTextureWrap(GL_REPEAT, GL_REPEAT);
 }
-Hole::~Hole() {
+Portal::~Portal() {
 }
 
-void Hole::draw() {
+void Portal::draw() {
 
 	material.begin();
 	{
-		collider->draw();
+		texture.bind();
+		plane.draw();
+		texture.unbind();
+		//collider->draw();
 	}
 	material.end();
 }
 
-void Hole::receiveCarCollision(Player* car) {
-	car->initPosition();
+void Portal::receiveCarCollision(Player* car) {
+	car->teleport(teleportPos);
 }
 

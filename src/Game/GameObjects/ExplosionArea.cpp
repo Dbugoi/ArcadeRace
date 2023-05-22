@@ -20,11 +20,11 @@ void ExplosionArea::update() {
 
 void ExplosionArea::draw() {
 
-	material.begin();
+	/*material.begin();
 	{
 		collider->draw();
 	}
-	material.end();
+	material.end();*/
 }
 
 void ExplosionArea::receiveBombCollision(Bomb* bomb) {

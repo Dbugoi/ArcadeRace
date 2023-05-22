@@ -17,6 +17,7 @@ public:
 	int craneHeight;
 	int W;
 	int cranePosY;
+	int originalPosZ;
 	float verticalSpeed;
 	float horizontalSpeed;
 	float CONSTANT_SPEED;

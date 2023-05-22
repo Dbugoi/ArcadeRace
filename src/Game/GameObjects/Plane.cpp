@@ -16,7 +16,7 @@ Plane::Plane(Game* game, glm::vec3 pos, glm::vec3 dim) : GameObject(game, pos, d
     transform.rotateDeg(-90, 0, 1, 0);
 
     
-    speed = 30;
+    speed = 50;
     bTurned = false;
 }
 Plane::~Plane() {

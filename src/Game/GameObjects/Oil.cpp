@@ -37,7 +37,7 @@ void Oil::draw() {
 		//plane.mapTexCoords(0, 0, 1, 1);
 		plane.draw();
 		texture.unbind();
-		collider->draw();
+		//collider->draw();
 	}
 	material.end();
 

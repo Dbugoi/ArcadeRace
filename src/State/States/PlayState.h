@@ -8,6 +8,8 @@
 class PlayState: public State{
 public:
     PlayState(Game *game);
+
+    PlayState(Game* game, int aux);
     
     ~PlayState(){};
     

@@ -130,7 +130,7 @@ void Player::slow() {
 void Player::overOil() {
     float currentTimef = ofGetElapsedTimef();
     if (timeSliding < currentTimef) {
-        timeSliding = currentTimef + 3;
+        timeSliding = currentTimef + 2;
         timeSlideSide = currentTimef;
     }
 }
@@ -144,8 +144,8 @@ void Player::turbo(float s) {
       
 }
 
-void Player::teletransport() {
-    transform.setPosition(0, 0, 0);
+void Player::teleport(glm::vec3 pos) {
+    transform.setPosition(pos);
 }
 
 void Player::initPosition() {

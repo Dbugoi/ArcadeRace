@@ -4,7 +4,7 @@
 #include <string>
 
 CrazyArch::CrazyArch(Game* game, glm::vec3 pos, glm::vec3 dim) : GameObject(game, pos, dim) {
-    material.setEmissiveColor(ofColor::blue);
+    material.setDiffuseColor(ofColor::blue);
     hasBeenPassed = false;
     archHeight = 350;
     timeChangeNum = 0;
