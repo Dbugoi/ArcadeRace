@@ -4,7 +4,7 @@
 
 
 Crane::Crane(Game* game, glm::vec3 pos, glm::vec3 dim) : GameObject(game, pos, dim) {
-	material.setEmissiveColor(ofColor::blue);
+	material.setEmissiveColor(ofColor::yellow);
 	hasBeenPassed = false;
 	craneHeight = dim.y;
 	cranePosY = pos.y;
@@ -43,8 +43,10 @@ void Crane::update() {
 
 	angle += horizontalSpeed;
 
-	/*
+	
 	collider->setGlobalPosition(position);
+
+	/*
 	auto orientation = collider->getGlobalOrientation();
 	orientation.y = angle;
 	collider->setGlobalOrientation(orientation);

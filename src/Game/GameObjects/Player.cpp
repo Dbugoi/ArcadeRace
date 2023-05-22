@@ -148,3 +148,12 @@ void Player::teletransport() {
     transform.setPosition(0, 0, 0);
 }
 
+void Player::initPosition() {
+    transform.setPosition(0, 0, 0);
+    speed = 0;
+}
+
+void Player::explosionNear() {
+    transform.rotateDeg(180, 0, 1, 0);
+}
+

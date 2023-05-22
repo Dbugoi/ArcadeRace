@@ -13,6 +13,7 @@ public:
     
     void draw() override;
     void drawDebug() override;
+    void receiveBombCollision(Bomb* bomb) override;
     
 };
 

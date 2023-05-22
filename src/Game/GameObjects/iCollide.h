@@ -8,6 +8,7 @@
 
 class Player;
 class Pedestrian;
+class Bomb;
 
 class iCollide{
     
@@ -19,6 +20,8 @@ class iCollide{
     virtual void receiveCarCollision(Player *car) {};
     virtual void receiveBulletCollision(GameObject *bullet) {};
     virtual void receivePedestrianCollision(Pedestrian *pedestrian) {};
+    virtual void receiveBombCollision(Bomb* bomb) {};
+
         
     BoxCollider* getCollider(){
         return collider;

@@ -48,6 +48,9 @@ public:
 	void overOil();
 	void teletransport();
     void turbo(float speed);
+    void initPosition();
+    void explosionNear();
+
 	
 };
 

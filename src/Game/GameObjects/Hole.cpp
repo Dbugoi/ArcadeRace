@@ -20,6 +20,6 @@ void Hole::draw() {
 }
 
 void Hole::receiveCarCollision(Player *car) {
-	car->init();
+	car->initPosition();
 }
 

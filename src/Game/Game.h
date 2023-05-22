@@ -18,6 +18,7 @@ class Game : public StateMachine{
     float initTime;
     
     ofSoundPlayer scream;
+    ofSoundPlayer explotion;
 
     
 public:
@@ -40,6 +41,7 @@ public:
     
     float getEllapsedTime();
     void doScream();
+    void doExplotion();
     
 };
 #endif

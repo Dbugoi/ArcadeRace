@@ -20,9 +20,7 @@ public:
 	float verticalSpeed;
 	float horizontalSpeed;
 	float CONSTANT_SPEED;
-	float horizontalX;
 	float horizontalY;
-	float horizontalZ;
 	float radius;
 	float angle;
 	

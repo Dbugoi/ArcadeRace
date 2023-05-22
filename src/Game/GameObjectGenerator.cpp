@@ -13,6 +13,9 @@
 #include "CrazyArch.h"
 #include "Crane.h"
 #include "Turbo.h"
+#include "Plane.h"
+#include "Bomb.h"
+#include "ExplosionArea.h"
 
 GameObjectGenerator::GameObjectGenerator(Game *game): game(game){}
 
@@ -96,7 +99,7 @@ void GameObjectGenerator::generateWorld(){
     game->addGameObject(pedestrian);
 
 	auto barrier = new Barrier(game,
-		glm::vec3(0, 600,2000), glm::vec3(W - wallSize , 500, 100));
+		glm::vec3(0, 600,4000), glm::vec3(W - wallSize , 500, 100));
 
 	game->addGameObject(barrier);
 
@@ -130,5 +133,19 @@ void GameObjectGenerator::generateWorld(){
         glm::vec3(0, -48, 2000), glm::vec3(200, 0.1, 200));
 
     game->addGameObject(turbo);
+
+    int planeY = 600, planeZ = 900;
+
+    auto plane = new Plane(game,
+        glm::vec3(-W / 2 - 1000, planeY, planeZ), glm::vec3(50, 150, 50));
+    game->addGameObject(plane);
+
+    auto bomb = new Bomb(game,
+        glm::vec3(0, planeY, planeZ), glm::vec3(150, 50, 50));
+    game->addGameObject(bomb);
+
+    auto explosionArea = new ExplosionArea(game,
+        glm::vec3(0, -50, planeZ), glm::vec3(1000, 0.1, 1000));
+    game->addGameObject(explosionArea);
 
 }

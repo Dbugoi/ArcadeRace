@@ -1,6 +1,7 @@
 
 
 #include "Road.h"
+#include "Bomb.h"
 #include "Game.h"
 
 Road::Road(Game *game, glm::vec3 pos, glm::vec3 dim): GameObject(game, pos){
@@ -28,4 +29,8 @@ void Road::draw(){
 
 void Road::drawDebug(){
     plane.drawWireframe();
+}
+
+void Road::receiveBombCollision(Bomb* bomb){
+    bomb->kill();
 }
