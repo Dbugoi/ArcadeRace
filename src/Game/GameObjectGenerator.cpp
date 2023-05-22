@@ -128,22 +128,22 @@ void GameObjectGenerator::generateWorld(){
     game->addGameObject(goal);
     
 
+    
 
-
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 10; i++) {
         auto coin = new Coin(game,
             glm::vec3((rand() % (W - 200) + 100) - W/2, -25, rand() % (L - 2000) + 1000), glm::vec3(50));
 
         game->addGameObject(coin);
     }
 
-    for (int i = 0; i < 15; i++) {
+    for (int i = 0; i < 10; i++) {
         auto obstacle = new Obstacle(game,
             glm::vec3((rand() % (W - 200) + 100) - W / 2, 25, rand() % (L - 2000) + 1000), glm::vec3(100));
 
         game->addGameObject(obstacle);
     }
-
+    
     
     auto pedestrian = new Pedestrian(game,
         glm::vec3(W/2 - 100, -25, 3000), glm::vec3(50, 150, 50));

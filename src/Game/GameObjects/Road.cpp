@@ -5,7 +5,7 @@
 #include "Game.h"
 
 Road::Road(Game *game, glm::vec3 pos, glm::vec3 dim): GameObject(game, pos){
-    material.setDiffuseColor(ofColor::darkGrey);
+    material.setDiffuseColor(ofColor::lightBlue);
     
     plane.setParent(transform);
     transform.rotateDeg(-90, 1, 0, 0);

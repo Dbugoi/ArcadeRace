@@ -16,10 +16,13 @@ class Game : public StateMachine{
     bool bDebug;
     bool bPlayerFinish;
     float initTime;
+    float initPauseTime;
     int pauseTime;
+
     
     ofSoundPlayer scream;
     ofSoundPlayer explotion;
+    ofSoundPlayer portal;
 
     
 public:
@@ -43,6 +46,7 @@ public:
     float getEllapsedTime();
     void doScream();
     void doExplotion();
+    void doPortal();
     void enterPause();
     void exitPause();
 };

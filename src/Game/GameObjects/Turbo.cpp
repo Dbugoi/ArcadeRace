@@ -7,7 +7,7 @@ Turbo::Turbo(Game* game, glm::vec3 pos, glm::vec3 dim) :
 	GameObject(game, pos, dim) {
 	material.setDiffuseColor(ofColor::lightGreen);
 }
-Turbo::~Turbo() {
+Turbo::~Turbo() { 
 }
 
 void Turbo::draw() {

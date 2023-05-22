@@ -3,6 +3,8 @@
 
 #include "ofMain.h"
 #include "GameObject.h"
+
+#include "ofxAssimpModelLoader.h"
 class Game;
 
 // TODO add speed settings
@@ -16,6 +18,8 @@ class Player : public GameObject{
     glm::vec3 prevPos;
     int coins;
     int initialY;
+
+    ofxAssimpModelLoader model;
     
 public:
     

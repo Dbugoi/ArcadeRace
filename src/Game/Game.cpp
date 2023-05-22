@@ -10,6 +10,7 @@ Game::Game(){
     bDebug = false;
     scream.load("aaa.wav");
     explotion.load("explotion.wav");
+    portal.load("portal.mp3");
     bPlayerFinish = false;
 }
 
@@ -50,7 +51,7 @@ void Game::update(){
 }
 
 void Game::draw(){
-    ofBackground(ofColor::mediumPurple);
+    //ofBackground(ofColor::mediumPurple);
     ofEnableLighting();
     ofEnableDepthTest();
     
@@ -99,11 +100,11 @@ float Game::getEllapsedTime(){
 }
 
 void Game::enterPause() {
-    pauseTime = ofGetElapsedTimef();
+    initPauseTime = ofGetElapsedTimef();
 }
 
 void Game::exitPause() {
-    pauseTime = ofGetElapsedTimef() - pauseTime;
+    pauseTime += ofGetElapsedTimef() - initPauseTime;
 }
 
 void Game::doScream(){
@@ -112,6 +113,10 @@ void Game::doScream(){
 
 void Game::doExplotion() {
     explotion.play();
+}
+
+void Game::doPortal() {
+    portal.play();
 }
 
 

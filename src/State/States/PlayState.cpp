@@ -26,7 +26,7 @@ void PlayState::update() {
 };
 
 void PlayState::draw() {
-    ofBackground(0);
+    ofBackground(ofColor::mediumPurple);
     ofPushMatrix();
     {
         ofTranslate(10, 0);

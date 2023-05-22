@@ -11,8 +11,14 @@ Player::Player(Game *game):GameObject(game, glm::vec3(100)){
     faro.setSpotlight();
     faro.move(0, 0, 50);
     faro.rotateDeg(-200, 1, 0, 0);
+    
     timeSliding = 0;
     initialY = 1500;
+
+    model.loadModel("car.fbx");
+    model.setRotation(0, 180, 0, 0, 1);
+    model.setPosition(0, -25, 0);
+    model.setScale(0.25, 0.25, 0.25);
 }
 
 Player::~Player(){}
@@ -60,9 +66,21 @@ void Player::draw(){
     
     material.begin();
     {
-        collider->draw();
+        //collider->draw();
+
+        transform.transformGL();
+
+        model.drawFaces();
+
+        transform.restoreTransformGL();
     }
     material.end();
+
+    transform.transformGL();
+
+    model.drawFaces();
+
+    transform.restoreTransformGL();
 }
 
 void Player::drawDebug(){

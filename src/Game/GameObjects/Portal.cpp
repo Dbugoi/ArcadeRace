@@ -36,5 +36,6 @@ void Portal::draw() {
 
 void Portal::receiveCarCollision(Player* car) {
 	car->teleport(teleportPos);
+	game->doPortal();
 }
 
