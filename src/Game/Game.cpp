@@ -10,6 +10,7 @@ Game::Game(){
     bDebug = false;
     scream.load("aaa.wav");
     explotion.load("explotion.wav");
+    bPlayerFinish = false;
 }
 
 Game::~Game(){
@@ -49,6 +50,7 @@ void Game::update(){
 }
 
 void Game::draw(){
+    ofBackground(ofColor::mediumPurple);
     ofEnableLighting();
     ofEnableDepthTest();
     

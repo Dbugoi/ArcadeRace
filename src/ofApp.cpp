@@ -6,8 +6,14 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     game = new Game();
-    game->setState(new PlayState(game));
+    //game->setState(new PlayState(game));
+    game->setState(new MenuState(game));
     ofSetFrameRate(60);
+
+    music.load("neon.mp3");
+    music.setVolume(0.1);
+    music.setLoop(true);
+    music.play();
 }
 
 ofApp::~ofApp(){

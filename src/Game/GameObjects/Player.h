@@ -15,6 +15,7 @@ class Player : public GameObject{
     bool bLight;
     glm::vec3 prevPos;
     int coins;
+    int initialY;
     
 public:
     

@@ -12,12 +12,13 @@ Player::Player(Game *game):GameObject(game, glm::vec3(100)){
     faro.move(0, 0, 50);
     faro.rotateDeg(-200, 1, 0, 0);
     timeSliding = 0;
+    initialY = 1500;
 }
 
 Player::~Player(){}
 
 void Player::init(){
-    transform.setPosition(0, 0, 0);
+    transform.setPosition(0, 0, initialY);
     speed = 0;
     bLight = false;
     
@@ -149,7 +150,7 @@ void Player::teleport(glm::vec3 pos) {
 }
 
 void Player::initPosition() {
-    transform.setPosition(0, 0, 0);
+    transform.setPosition(0, 0, initialY);
     speed = 0;
 }
 

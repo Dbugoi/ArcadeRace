@@ -3,7 +3,7 @@
 #include "PauseState.h"
 #include "Player.h"
 
-PlayState::PlayState(Game *game): State(game, "Play State"){
+PlayState::PlayState(Game* game) : State(game, "Play State") {
     game->init();
 };
 
@@ -12,20 +12,20 @@ PlayState::PlayState(Game* game, int aux) : State(game, "Play State") {
 }
 
 
-void PlayState::update(){
+void PlayState::update() {
     game->update();
-    
-    if(ofGetKeyPressed(OF_KEY_LEFT))
+
+    if (ofGetKeyPressed(OF_KEY_LEFT))
         game->getPlayer()->steerLeft();
-    if(ofGetKeyPressed(OF_KEY_RIGHT))
+    if (ofGetKeyPressed(OF_KEY_RIGHT))
         game->getPlayer()->steerRight();
-    if(ofGetKeyPressed(OF_KEY_UP))
+    if (ofGetKeyPressed(OF_KEY_UP))
         game->getPlayer()->accelerate();
-    if(ofGetKeyPressed(OF_KEY_DOWN))
+    if (ofGetKeyPressed(OF_KEY_DOWN))
         game->getPlayer()->brake();
 };
-    
-void PlayState::draw(){
+
+void PlayState::draw() {
     ofBackground(0);
     ofPushMatrix();
     {
@@ -46,21 +46,21 @@ void PlayState::draw(){
     game->draw();
 };
 
-void PlayState::next(){
+void PlayState::next() {
     game->setState(new ResultState(game));
 };
 
 
-void PlayState::keyPressed(int key){
-    if(key == 'l' || key == 'L')
+void PlayState::keyPressed(int key) {
+    if (key == 'l' || key == 'L')
         game->getPlayer()->toggleLight();
-    if(key == 'd' || key == 'D')
+    if (key == 'd' || key == 'D')
         game->toggleDebug();
-    if(key == ' ')
+    if (key == ' ')
         game->getPlayer()->shoot();
     if (key == 'p' || key == 'P') {
         game->enterPause();
         game->setState(new PauseState(game));
     }
-        
+
 }

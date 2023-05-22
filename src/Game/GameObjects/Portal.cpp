@@ -10,7 +10,7 @@ Portal::Portal(Game* game, glm::vec3 pos1, glm::vec3 pos2, glm::vec3 dim) :
 
 	plane.set(dim.x, dim.z);
 	plane.rotateDeg(180, 0, 1, 0);
-	plane.move(pos1.x, pos1.y, pos1.z + 1);
+	plane.move(pos1.x, pos1.y, pos1.z);
 
 	transform.rotateDeg(-90, 1, 0, 0);
 

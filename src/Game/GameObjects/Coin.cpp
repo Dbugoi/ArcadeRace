@@ -33,5 +33,5 @@ void Coin::receiveCarCollision(Player *car){
 void Coin::receiveBulletCollision(GameObject *bullet){
     bullet->kill();
     kill();
-    game->getPlayer()->addCoins(1000);
+    game->getPlayer()->addCoins(25);
 }
